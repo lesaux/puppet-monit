@@ -1,0 +1,12 @@
+#
+# THIS FILE IS MANAGED BY PUPPET
+# /etc/puppet/modules/production/monit/common/etc/monit/conf.d/redis-flapjack
+#
+
+check process redis-server_flapjack with pidfile /var/run/redis_flapjack.pid
+  start program = "/etc/init.d/redis-server_flapjack start"
+  stop program = "/etc/init.d/redis-server_flapjack stop"
+  if failed port 6380 then restart
+  if 5 restarts within 5 cycles then timeout
+
+

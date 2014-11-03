@@ -1,0 +1,12 @@
+#
+# THIS FILE IS MANAGED BY PUPPET
+# /etc/puppet/modules/production/monit/common/etc/monit/conf.d/carbon-cache_a
+#
+
+check process carbon-cache_a with pidfile /opt/graphite/storage/carbon-cache-a.pid
+  start program = "/etc/init.d/carbon-cache_a start"
+  stop program = "/etc/init.d/carbon-cache_a stop"
+  if failed port 2103 then restart
+  if 5 restarts within 5 cycles then timeout
+
+

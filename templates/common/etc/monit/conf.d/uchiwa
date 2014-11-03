@@ -1,0 +1,12 @@
+#
+# THIS FILE IS MANAGED BY PUPPET
+# /etc/puppet/modules/production/monit/common/etc/monit/conf.d/uchiwa
+#
+
+check process uchiwa with pidfile /var/run/uchiwa.pid
+  start program = "/etc/init.d/uchiwa start"
+  stop program = "/etc/init.d/uchiwa stop"
+  if failed port 3000 then restart
+  if 5 restarts within 5 cycles then timeout
+
+

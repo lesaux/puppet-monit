@@ -1,0 +1,12 @@
+#
+# THIS FILE IS MANAGED BY PUPPET
+# /etc/puppet/modules/production/monit/common/etc/monit/conf.d/flapjack
+#
+
+check process flapjack with pidfile /var/run/flapjack/flapjack.pid
+  start program = "/etc/init.d/flapjack start"
+  stop program = "/etc/init.d/flapjack stop"
+  if failed port 3080 then restart
+  if 5 restarts within 5 cycles then timeout
+
+

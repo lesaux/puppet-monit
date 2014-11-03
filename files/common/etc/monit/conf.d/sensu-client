@@ -1,0 +1,11 @@
+#
+# THIS FILE IS MANAGED BY PUPPET
+# /etc/puppet/modules/production/monit/common/etc/monit/conf.d/sensu-client
+#
+
+check process sensu-client with pidfile /var/run/sensu/sensu-client.pid
+  start program = "/etc/init.d/sensu-client start"
+  stop program = "/etc/init.d/sensu-client stop"
+  if 5 restarts within 5 cycles then timeout
+
+

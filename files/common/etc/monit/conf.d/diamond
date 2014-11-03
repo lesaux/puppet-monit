@@ -1,0 +1,9 @@
+#
+# THIS FILE IS MANAGED BY PUPPET
+# /etc/puppet/modules/production/monit/common/etc/monit/conf.d/diamond
+#
+
+check process diamond with pidfile /var/run/diamond.pid
+  start program = "/etc/init.d/diamond start"
+  stop program = "/etc/init.d/diamond stop"
+  if 5 restarts within 5 cycles then timeout

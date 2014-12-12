@@ -16,3 +16,30 @@
 # Sample Usage:
 #   monit::service { 'denyhosts': }
 #   monit::service { 'fail2ban': }
+# 
+# If there is no template for the service you want to monit
+# You may use the following class in the way:
+#
+#   monit::service::template { 'carbon-relay_fan':
+#     process_name  => carbon-relay_fan,
+#     pid_file      => '/opt/graphite/storage/carbon-relay_fan.pid',
+#     start_program => '/etc/init.d/carbon-relay_fan start',
+#     stop_program  => '/etc/init.d/carbon-relay_fan stop',
+#     port          => 2003
+#   }
+#
+#  In which case the following template is used
+#
+#
+# THIS FILE IS MANAGED BY PUPPET
+# /etc/puppet/modules/production/monit/common/etc/monit/conf.d/template
+#
+#check process <%= @process_name %> with pidfile <%= @pid_file %>
+#  start program = "<%= @start_program %>"
+#  stop program = "<%= @stop_program %>"
+#
+#<% if @port -%>
+#  if failed port <%= @port %> then restart
+#<% end -%>
+#
+#  if 5 restarts within 5 cycles then timeout

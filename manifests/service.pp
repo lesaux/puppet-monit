@@ -30,7 +30,7 @@ case $::osfamily {
 }
 
 
-define monit::service::template( $process_name, $pid_file, $start_program, $stop_program, $port ) {
+define monit::service::template( $process_name, $pid_file, $start_program, $stop_program, $ip, $port ) {
 
 case $::osfamily {
 

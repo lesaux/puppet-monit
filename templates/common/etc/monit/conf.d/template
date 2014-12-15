@@ -8,7 +8,7 @@ check process <%= @process_name %> with pidfile <%= @pid_file %>
   stop program = "<%= @stop_program %>"
 
 <% if @port -%> 
-  if failed port <%= @port %> then restart
+  if failed host <%= @ip %> port <%= @port %> then restart
 <% end -%>
 
   if 5 restarts within 5 cycles then timeout

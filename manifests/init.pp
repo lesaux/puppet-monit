@@ -20,7 +20,7 @@ case $::osfamily {
     file { '/var/lib/monit':
       ensure  => directory,
       force   => true,
-      purge   => true,
+      #purge   => true,
       recurse => true,
       owner   => 'root',
       group   => 'root',
